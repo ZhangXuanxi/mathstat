@@ -1,0 +1,70 @@
+\documentclass{article}%ctex
+\input{~/code/math_commands.tex}
+
+
+
+
+\title{\huge R2\\
+\normalsize}
+\author{Xuanxi Zhang}
+\begin{document}
+\maketitle
+
+\section{}
+Recall the indicator function $\mathbf{1}_A(\omega)$ is defined to be $\mathbf{1}$ if $\omega \in A$ and 0 otherwise.
+\begin{enumerate}
+    \item For sets $A_1, \ldots, A_n$ with union $A=\cup_{i=1}^n A_i$, show that for all $\omega \in \Omega$,
+$$
+\mathbf{1}_A(\omega)=\sum_{k=1}^n(-1)^{k-1} \sum_{I \subseteq\{1,2, \ldots, n\}:|I|=k} \mathbf{1}_{\cap_{i\in I}A_i(\omega)} .
+$$
+\item Prove the inclusion-exclusion principle: any probability measure P on $\Omega$ satisfies
+
+$$
+\mathbb{P}\left(\bigcup_{i=1}^n A_i\right)=\sum_{k=1}^n(-1)^{k-1} \sum_{I \subseteq\{1,2, \ldots, n\}:|I|=k} \mathbb{P}\left(\bigcap_{i \in I} A_i\right) .
+$$
+\end{enumerate}
+
+
+
+\section{4.74}
+The number of offspring of an organism is a discrete random variable with mean $\mu$ and variance $\sigma^2$. Each of its offspring reproduces in the same manner. Find the expected number of offspring in the third generation and its variance.
+
+
+
+\section{}
+Show that if $X_i$ are independent, identically distributed exponential random variables, $X_i \sim \operatorname{Exp}(\lambda)$, then
+
+$$
+Y_i=\sum_{i=1}^n X_i \sim \operatorname{Gamma}(n, \lambda) .
+$$
+Use the fact that the mgf of $\operatorname{Gamma}(\alpha, \lambda)$ is $M(t)=\left(\frac{\lambda}{\lambda-t}\right)^\alpha$.
+
+
+\section{5.18}
+Suppose that a company ships packages that are variable in weight, with an average weight of 15 lb and a standard deviation of 10 lb . Assuming that the packages come from a large number of different customers so that it is reasonable to model their weights as independent random variable, find the probability that 100 packages will have a total weight exceeding 1700 lb .
+
+
+\section{5.2} Let $X_i$ be independent random variables with $\mathbb{E}\left[X_i\right]=\mu_i . \operatorname{Var}\left(X_i\right)=\sigma^2$, and
+
+$$
+\frac{1}{n} \sum_{i=1}^n \mu_i \longrightarrow \mu .
+$$
+
+
+Show that
+
+$$
+X_n=\frac{1}{n} \sum_{i=1}^n X_i \longrightarrow \mu
+$$
+
+in probability. (I.e., show that we can still use the Law of Large Numbers when the variables don't all have the same expectation, as long as the mean of the expectations converges.)
+
+
+
+
+
+
+
+%\bibliographystyle{plainnat}
+%\bibliography{ref}
+\end{document}

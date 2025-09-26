@@ -1,0 +1,244 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+
+\newcommand{\Pbb}{\mathbb{P}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\1}{\mathbf{1}}
+
+\title{Probability Review Notes}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Axioms of Probability (Kolmogorov)}
+Let $(\Omega,\mathcal{F},\Pbb)$ be a probability space where $\Omega$ is the sample space, $\mathcal{F}$ a $\sigma$-algebra, and $\Pbb:\mathcal{F}\to[0,1]$ a probability measure. For all events $A,B\in\mathcal{F}$:
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{Nonnegativity:} $\Pbb(A)\ge 0$.
+  \item \textbf{Normalization:} $\Pbb(\Omega)=1$.
+  \item \textbf{$\sigma$-additivity:} If $A_1,A_2,\dots$ are pairwise disjoint, then
+  $\Pbb\!\left(\bigcup_{i=1}^\infty A_i\right) = \sum_{i=1}^\infty \Pbb(A_i)$.
+\end{enumerate}
+\textit{Consequences:} $\Pbb(\varnothing)=0$; $\Pbb(A^c)=1-\Pbb(A)$; if $A\subseteq B$ then $\Pbb(B\setminus A)=\Pbb(B)-\Pbb(A)$; inclusion–exclusion:
+$\Pbb(A\cup B)=\Pbb(A)+\Pbb(B)-\Pbb(A\cap B)$.
+
+\section{Conditional Probability and Bayes' Theorem}
+\begin{definition}[Conditional Probability]
+For $\Pbb(B)>0$,
+\[
+  \Pbb(A\mid B)=\frac{\Pbb(A\cap B)}{\Pbb(B)}.
+\]
+\end{definition}
+\noindent\textbf{Law of Total Probability:} If $\{B_i\}_{i\in I}$ is a partition with $\Pbb(B_i)>0$,
+\[
+  \Pbb(A)=\sum_{i}\Pbb(A\mid B_i)\Pbb(B_i).
+\]
+\noindent\textbf{Bayes' Theorem:}
+\[
+  \Pbb(B_j\mid A)=\frac{\Pbb(A\mid B_j)\Pbb(B_j)}{\sum_i \Pbb(A\mid B_i)\Pbb(B_i)}.
+\]
+\textit{Odds form:} Prior odds $\times$ likelihood ratio $=$ posterior odds.
+
+\section{Independence}
+\begin{definition}[Events]
+Events $A,B$ are \emph{independent} if $\Pbb(A\cap B)=\Pbb(A)\Pbb(B)$.
+A family $\{A_i\}_{i\in I}$ is \emph{mutually (jointly) independent} if for every finite distinct $i_1,\dots,i_k$,
+\[
+  \Pbb\!\left(\bigcap_{\ell=1}^k A_{i_\ell}\right)=\prod_{\ell=1}^k \Pbb(A_{i_\ell}).
+\]
+They are \emph{pairwise independent} if $\Pbb(A_i\cap A_j)=\Pbb(A_i)\Pbb(A_j)$ for all $i\ne j$.
+\end{definition}
+\textbf{Important:} Joint (mutual) independence $\Rightarrow$ pairwise independence, but not conversely. （相互独立 $\Rightarrow$ 两两独立，但反之不一定。）
+
+\section{r.v.}
+\begin{definition}[Random Variables]
+A random variable (r.v.) $X:(\Omega,\mathcal{F})\to(\mathbb{R},\mathcal{B})$ is a measurable function:
+$\{\,\omega: X(\omega)\le x\,\}\in\mathcal{F}$ for all $x\in\mathbb{R}$.
+\end{definition}
+Distribution of $X$: $F_X(x)=\Pbb(X\le x)$; for discrete $X$, pmf $p_X(x)=\Pbb(X=x)$; for continuous $X$, pdf $f_X=\frac{d}{dx}F_X$ (where it exists).
+
+
+\section{Important Discrete Random Variables}
+Below $k\in\{0,1,2,\dots\}$ unless stated.
+
+\subsection*{Bernoulli$(p)$}
+$\Pbb(X=1)=p,\ \Pbb(X=0)=1-p$.
+\[
+  \E[X]=p,\quad \Var(X)=p(1-p),\quad M_X(t)=1-p+pe^t.
+\]
+
+\subsection*{Binomial$(n,p)$}
+Sum of $n$ i.i.d.\ Bernoulli$(p)$:
+\[
+  \Pbb(X=k)=\binom{n}{k}p^k(1-p)^{n-k},\quad
+  \E[X]=np,\quad \Var(X)=np(1-p).
+\]
+
+\subsection*{Geometric$(p)$ (number of trials to first success)}
+Support $\{1,2,\dots\}$:
+\[
+  \Pbb(X=k)=(1-p)^{k-1}p,\quad
+  \E[X]=\frac{1}{p},\quad \Var(X)=\frac{1-p}{p^2}.
+\]
+Memoryless: $\Pbb(X>m+n\mid X>m)=(1-p)^n$.
+
+\subsection*{Poisson$(\lambda)$}
+\[
+  \Pbb(X=k)=e^{-\lambda}\frac{\lambda^k}{k!},\quad
+  \E[X]=\Var(X)=\lambda.
+\]
+Poisson thinning/superposition; Poisson limit of Binomial: if $n\to\infty$, $p\to 0$, $np\to\lambda$.
+
+\subsection*{Discrete Uniform on $\{a,\dots,b\}$}
+$p_X(k)=1/(b-a+1)$.
+\[
+  \E[X]=\frac{a+b}{2},\quad \Var(X)=\frac{(b-a+1)^2-1}{12}.
+\]
+
+\section{Continuous Random Variables}
+\subsection*{Uniform$(a,b)$}
+$f(x)=\frac{1}{b-a}$ on $(a,b)$.
+\[
+  \E[X]=\frac{a+b}{2},\quad \Var(X)=\frac{(b-a)^2}{12}.
+\]
+
+\subsection*{Exponential$(\lambda)$}
+$f(x)=\lambda e^{-\lambda x}$ for $x\ge 0$.
+\[
+  \E[X]=\frac{1}{\lambda},\quad \Var(X)=\frac{1}{\lambda^2}.
+\]
+Memoryless: $\Pbb(X>t+s\mid X>s)=e^{-\lambda t}$.
+
+\subsection*{Gaussian / Normal $\mathcal{N}(\mu,\sigma^2)$}
+\[
+  f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right),\ \ 
+  \E[X]=\mu,\ \Var(X)=\sigma^2.
+\]
+If $X\sim \mathcal{N}(\mu_1,\sigma_1^2)$ and $Y\sim \mathcal{N}(\mu_2,\sigma_2^2)$ independent, then $X+Y\sim \mathcal{N}(\mu_1+\mu_2,\ \sigma_1^2+\sigma_2^2)$.
+Standardization: $Z=(X-\mu)/\sigma\sim\mathcal{N}(0,1)$.
+
+\subsection*{Gamma$(\alpha,\beta)$ (shape $\alpha$, rate $\beta$)}
+\[
+  f(x)=\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x},\ x\ge 0;\quad
+  \E[X]=\frac{\alpha}{\beta},\ \Var(X)=\frac{\alpha}{\beta^2}.
+\]
+Sum of independent $\text{Gamma}(\alpha_i,\beta)$ with common rate is $\text{Gamma}(\sum \alpha_i,\beta)$.
+Exponential is Gamma$(1,\lambda)$.
+
+\subsection*{Beta$(a,b)$ on $(0,1)$}
+\[
+  f(x)=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}x^{a-1}(1-x)^{b-1},\quad
+  \E[X]=\frac{a}{a+b},\ \Var(X)=\frac{ab}{(a+b)^2(a+b+1)}.
+\]
+Conjugate prior for Bernoulli/Binomial.
+
+\section{Joint Distributions and Independence of r.v.s}
+For discrete $(X,Y)$: $p_{X,Y}(x,y)$; continuous: $f_{X,Y}(x,y)$. Marginals:
+$p_X(x)=\sum_y p_{X,Y}(x,y)$ or $f_X(x)=\int f_{X,Y}(x,y)\,dy$.
+\[
+  X\perp Y \iff p_{X,Y}(x,y)=p_X(x)p_Y(y)\ (\text{discrete}) \quad
+  \text{or}\quad f_{X,Y}(x,y)=f_X(x)f_Y(y)\ (\text{continuous}).
+\]
+Conditional distributions: $p_{X\mid Y}(x\mid y)=\dfrac{p_{X,Y}(x,y)}{p_Y(y)}$, \
+$f_{X\mid Y}(x\mid y)=\dfrac{f_{X,Y}(x,y)}{f_Y(y)}$ (when denominators $>0$).
+
+\section{Transforms and Common Tools (Very Short)}
+Characteristic function $\varphi_X(t)=\E[e^{itX}]$ always exists; independence $\Rightarrow$ product of characteristic functions. CLT: sums of i.i.d.\ (finite variance) approximate normal. Chebyshev/Markov inequalities bound tails via moments.
+
+\newpage
+
+\section*{Exercises}
+
+\begin{enumerate}
+  \item[\textbf{1.}] \textbf{Geometric distribution properties}  
+  Let $X \sim \mathrm{Geom}(p)$ be independent geometric random variables (support $\{1,2,\dots\}$, representing the trial of the first success).  Prove the \emph{memoryless property}: for any integers $m,n \geq 0$,
+    \[
+      \Pbb(X>m+n \mid X>m) = \Pbb(X>n).
+    \]
+
+  \item[\textbf{2.}] \textbf{Exponential distribution properties}  
+  Let $X \sim \mathrm{Exp}(\lambda)$ be independent exponential random variables.  Prove the \emph{memoryless property}: for any $s,t\geq 0$,
+    \[
+      \Pbb(X>t+s \mid X>s) = \Pbb(X>t).
+    \]
+
+  \item[\textbf{3.}] \textbf{Closure of the Gaussian distribution}  
+  Let $X\sim \mathcal{N}(\mu_1,\sigma_1^2)$ and $Y\sim \mathcal{N}(\mu_2,\sigma_2^2)$ be independent.  
+  \begin{enumerate}[label=(\alph*)]
+    \item Show that $X+Y \sim \mathcal{N}(\mu_1+\mu_2,\;\sigma_1^2+\sigma_2^2)$.  
+    \item Generalize the result to the sum of $n$ independent Gaussian random variables.
+  \end{enumerate}
+
+  \item[\textbf{4.}] \textbf{Relationship between exponential distribution and Poisson process}  
+  \begin{enumerate}[label=(\alph*)]
+    \item Let $\{N(t), t\geq 0\}$ be a Poisson process with rate $\lambda$. Show that $N(t)\sim \mathrm{Poisson}(\lambda t)$.  
+    \item Prove that the interarrival time between two consecutive events follows an exponential distribution $\mathrm{Exp}(\lambda)$.  
+    \item Prove that interarrival times are i.i.d., establishing the link between the exponential distribution and the Poisson process.
+  \end{enumerate}
+\end{enumerate}
+
+\newpage
+
+\section*{Proof Sketches}
+
+\subsection*{1. Geometric distribution}
+(a) $X_1+X_2$ is the number of trials needed for two successes. For $k\geq 2$:
+\[
+  \Pbb(X_1+X_2=k) = \binom{k-1}{1} (1-p)^{k-2}p^2,
+\]
+which is a negative binomial $NB(r=2,p)$. In general, the sum of $n$ i.i.d.\ geometric r.v.s is $NB(r=n,p)$.  
+
+(b) For $X\sim\mathrm{Geom}(p)$:
+\[
+  \Pbb(X>m+n \mid X>m) = \frac{(1-p)^{m+n}}{(1-p)^m} = (1-p)^n = \Pbb(X>n).
+\]
+
+\subsection*{2. Exponential distribution}
+(a) By convolution:
+\[
+  f_{X_1+X_2}(s) = \int_0^s \lambda e^{-\lambda x}\, \lambda e^{-\lambda(s-x)}\,dx = \lambda^2 s e^{-\lambda s}, \quad s\ge 0,
+\]
+which is Gamma$(2,\lambda)$.  
+
+(b) Memorylessness:
+\[
+  \Pbb(X>t+s \mid X>s) = \frac{e^{-\lambda(t+s)}}{e^{-\lambda s}} = e^{-\lambda t} = \Pbb(X>t).
+\]
+
+\subsection*{3. Gaussian distribution}
+Characteristic function method:  
+\[
+  \varphi_X(t)=\exp\!\left(i\mu_1 t - \tfrac{1}{2}\sigma_1^2 t^2\right),\quad
+  \varphi_Y(t)=\exp\!\left(i\mu_2 t - \tfrac{1}{2}\sigma_2^2 t^2\right).
+\]
+Thus
+\[
+  \varphi_{X+Y}(t)=\varphi_X(t)\varphi_Y(t)=\exp\!\left(i(\mu_1+\mu_2)t - \tfrac{1}{2}(\sigma_1^2+\sigma_2^2)t^2\right).
+\]
+Hence $X+Y\sim \mathcal{N}(\mu_1+\mu_2,\,\sigma_1^2+\sigma_2^2)$.  
+The generalization to $n$ independent Gaussians follows similarly.
+
+\subsection*{4. Exponential distribution and Poisson process}
+(a) By definition of Poisson process: $N(t)\sim \mathrm{Poisson}(\lambda t)$.  
+
+(b) For the first interarrival time $T_1$:
+\[
+  \Pbb(T_1>t)=\Pbb(N(t)=0)=e^{-\lambda t},\quad t\ge 0,
+\]
+so $T_1\sim \mathrm{Exp}(\lambda)$.  
+
+(c) By the independent increments property, all interarrival times are i.i.d.\ exponential with rate $\lambda$. Thus the Poisson counting process and the exponential waiting-time distribution are two sides of the same structure.
+
+\end{document}
+
+\noindent\textbf{术语对照（少量）}: \quad pairwise independent = 两两独立； mutually/jointly independent = 相互独立； probability mass function (pmf) = 概率质量函数； probability density function (pdf) = 概率密度函数。
