@@ -1,0 +1,49 @@
+\documentclass{article}% ctex 支持中文时可替换为 ctexart
+\input{~/code/math_commands.tex}
+
+% --- 开关：默认关闭 ---
+\newif\ifwithrefs
+\withrefsfalse
+% 如果需要引用文献，把上面改成 \withrefstrue
+
+\title{\huge R6 \ \normalsize}
+\author{Xuanxi Zhang}
+\begin{document}
+\maketitle
+\section{}
+Suppose random variable  $X\sim \gU[0,\theta]$, where $\theta>0$ is an unknown parameter. $\{X_1,X_2,\ldots,X_n\}$ are i.i.d. samples drawn from the distribution of $X$. Consider two estimators of $\theta$:
+\[\hat{\theta}_1=2\bar{X},\quad \hat{\theta}_2=\max_i X_{i},\]
+where $\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i$ is the sample mean.
+
+\begin{enumerate}
+    \item Find the bias and variance of $\hat{\theta}_1$ and $\hat{\theta}_2$.
+    \item Find the mean squared error (MSE) of $\hat{\theta}_1$ and $\hat{\theta}_2$.
+    \item Which estimator would you prefer? Explain your answer.
+    \item Can we apply the cramer-rao lower bound to this problem? Why or why not?
+\end{enumerate}
+
+\section{Maximum a Posteriori}
+$\{X_1,X_2,\ldots,X_n\}$ are i.i.d. samples drawn from $\gN(\theta,1)$.
+\begin{enumerate}
+    \item what is the maximum likelihood estimator (MLE) of $\theta$?
+    \item If we have a prior distribution $\theta\sim \gN(\theta_0,\sigma^2)$, what is the maximum a posteriori (MAP) estimator of $\theta$?
+\end{enumerate}
+
+\section{likelihood ratio test}
+$X=x$ is a single observation with PDF $f_\theta(x)=\theta x^{\theta-1}, \quad 0<x<1$
+
+Find the most powerful level- $\alpha$ (level 5\%) test for
+$$
+\begin{aligned}
+& H_0: \theta=3 \\
+& H_1: \theta=2
+\end{aligned}
+$$
+
+
+\ifwithrefs
+  \bibliographystyle{plain}
+  \bibliography{~/code/refs} % 修改为你的 bib 文件
+\fi
+
+\end{document}
