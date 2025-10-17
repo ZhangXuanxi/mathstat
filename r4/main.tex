@@ -1,0 +1,25 @@
+\documentclass{article}% ctex 支持中文时可替换为 ctexart
+\input{~/code/math_commands.tex}
+
+% --- 开关：默认关闭 ---
+\newif\ifwithrefs
+\withrefsfalse
+% 如果需要引用文献，把上面改成 \withrefstrue
+
+\title{\huge R4 \ \normalsize}
+\author{Xuanxi Zhang}
+\begin{document}
+\maketitle
+\section{Unbiased Estimation}
+For sampling without replacement, is $\bar{X}^2$ an unbiased estimator for $\mu^2$? If not, what is the bias?
+
+\section{joint distribution} Let $P$ have a uniform distribution on $[0,1]$, and, conditional on $P=p$, let $X$ have a Bernoulli distribution with parameter $p$. Find the conditional distribution of $P$ given $X$.
+
+
+
+\ifwithrefs
+  \bibliographystyle{plain}
+  \bibliography{~/code/refs} % 修改为你的 bib 文件
+\fi
+
+\end{document}

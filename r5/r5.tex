@@ -1,0 +1,49 @@
+\documentclass{article}% ctex 支持中文时可替换为 ctexart
+\input{~/code/math_commands.tex}
+
+% --- 开关：默认关闭 ---
+\newif\ifwithrefs
+\withrefsfalse
+% 如果需要引用文献，把上面改成 \withrefstrue
+
+\title{\huge Default Title \ \normalsize}
+\author{Xuanxi Zhang}
+\begin{document}
+\maketitle
+
+\section{Unbiased Estimation}
+For sampling without replacement, is $\bar{X}^2$ an unbiased estimator for $\mu^2$? If not, what is the bias?
+
+\section{8.5} Suppose that $X$ is a discrete random variable with $P(X=1)=\theta$ and $P(X=2)=1-\theta$. We draw $n$ independent observations and find that $n_1$ of them take the value 1 and $n_2$ take the value 2.
+\begin{enumerate}
+    \item Find the method of moments estimator of $\theta$.
+    \item What is the likelihood function?
+    \item What is the maximum likelihood estimator of $\theta$?
+\end{enumerate}
+
+
+
+\section{8.6} Suppose $X \sim \operatorname{Bin}(n, p)$.
+\begin{enumerate}
+    \item Show that the MLE of $p$ is $\hat{p}=\frac{X}{n}$.
+    \item Show that the MLE from part (a) attains the Cramer-Rao bound.
+\end{enumerate}
+
+    
+\section{True or False?}
+\begin{enumerate}
+    \item MLE estimators are always unbiased.
+    \item The square of the MLE estimator of a parameter $\theta$ converges to $\theta^2$ in probability, for any parameter and any observations $X_1, \ldots, X_n$.
+    \item The MOM estimator always exists.
+    \item The likelihood function integrates to 1, i.e.,
+    $$
+    \int_{-\infty}^{\infty} \mathcal{L}_n(\theta) d \theta=1
+    $$
+\end{enumerate}
+
+\ifwithrefs
+  \bibliographystyle{plain}
+  \bibliography{~/code/refs} % 修改为你的 bib 文件
+\fi
+
+\end{document}
