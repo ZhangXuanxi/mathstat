@@ -1,0 +1,47 @@
+\documentclass{article}% ctex 支持中文时可替换为 ctexart
+\input{~/code/math_commands.tex}
+
+% --- 开关：默认关闭 ---
+\newif\ifwithrefs
+\withrefsfalse
+% 如果需要引用文献，把上面改成 \withrefstrue
+
+\title{\huge R7 \ \normalsize}
+\author{Xuanxi Zhang}
+\begin{document}
+\maketitle
+
+
+
+\section{9.7}
+Let $X_1, \ldots, X_n$ be a sample from a Poisson distribution. Find the likelihood ratio for testing $H_0: \lambda=\lambda_0$ versus $H_A: \lambda=\lambda_1$, where $\lambda_1>\lambda_0$. Use the fact that the sum of independent Poisson random variables follows a Poisson distribution to explain how to determine a rejection region for a test at level $\alpha$.
+
+
+\section{}
+$X_1, \ldots, X_n\sim \gN(\theta,1)$.
+$$
+\Theta_0=\{\theta\leq 0\}, \ \ \Theta_1=\{\theta>0\}.
+$$
+Construct level-$\alpha$(0.05) test with statistic $T=\bar{X}=\frac{1}{n}\sum_{i=1}^n X_i$.
+
+
+\section{9.20}
+Consider two probability density functions on $[0,1]: f_0(x)=1$, and $f_1(x)=2 x$. Among all tests of the null hypothesis $H_0: X \sim f_0(x)$ versus the alternative $X \sim f_1(x)$, with significance level $\alpha=0.10$, how large can the power possibly be?
+
+
+\section{9.12}
+Let $X_1, \ldots, X_n$ be a random sample from an exponential distribution with the density function $f(x \mid \theta)=\theta \exp [-\theta x]$. Derive a likelihood ratio test of $H_0: \theta= \theta_0$ versus $H_A: \theta \neq \theta_0$, and show that the rejection region is of the form $\left\{\bar{X} \exp \left[-\theta_0 \bar{X}\right] \leq c\right\}$.
+
+
+
+
+
+
+
+
+\ifwithrefs
+  \bibliographystyle{plain}
+  \bibliography{~/code/refs} % 修改为你的 bib 文件
+\fi
+
+\end{document}
