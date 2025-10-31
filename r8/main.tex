@@ -1,0 +1,92 @@
+\documentclass{article}% ctex 支持中文时可替换为 ctexart
+\input{~/code/math_commands.tex}
+
+% --- 开关：默认关闭 ---
+\newif\ifwithrefs
+\withrefsfalse
+% 如果需要引用文献，把上面改成 \withrefstrue
+
+\title{\huge R 8 \ \normalsize}
+\author{Xuanxi Zhang}
+\begin{document}
+\maketitle
+
+\section{9.26 True or False}
+\begin{enumerate}
+\item[(a)] The generalized likelihood ratio statistic LR is always less than or equal to 1.
+\item[(b)] If the $p$-value is 0.03, the corresponding test will reject at the significance level 0.02.
+\item[(c)] If a test rejects at a significance level of 0.06, then the $p$-value is less than or equal to 0.06.
+\item[(d)] The $p$-value of a test is the probability that the null hypothesis is correct.
+\item[(e)] If a $\chi^2$ test statistic with 4 degrees of freedom has a value of 8.5, the $p$-value is less than 0.05.
+\end{enumerate}
+
+\section{9.35}
+Under a standard genetic model, the genotypes \(A A, A a,\) and \(a a\) occur with probabilities \((1-\theta)^2,\;2\theta(1-\theta),\;\theta^2\) for some \(0\le\theta\le1\). A sample of 190 people reveals that 10 have type \(A A\), 68 have type \(A a\), and 112 have type \(a a\). Develop a test for the null hypothesis that the data we observe comes from this model.
+
+\begin{enumerate}
+\item If we assume the data comes from the model, what is the MLE estimate of \(\theta\)? Recall the pmf of a multinomial distribution is
+\[
+\frac{n!}{X_1!\cdots X_k!}\; p_1^{X_1}\cdots p_k^{X_k}.
+\]
+
+\item what is the generalized likelihood ratio statistic?
+
+\item What is the Pearson chi-squared statistic?
+
+\item Use the table below to estimate the p-value of the data. At a significance level of 0.05, would we accept or reject the null hypothesis that the data comes from our model?
+\end{enumerate}
+
+\begin{table}[H]
+\captionsetup{labelformat=empty}
+\caption{TABLE 3 Percentiles of the $\chi^2$ Distribution-Values of $\chi_P^2$ Corresponding to $P$}
+\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+\hline \multicolumn{11}{|c|}{} \\
+\hline df & $\chi_{.005}^2$ & $\chi_{.01}^2$ & $\chi_{.025}^2$ & $\chi_{.05}^2$ & $\chi_{.10}^2$ & $\chi_{.90}^2$ & $\chi_{.95}^2$ & $\chi_{.975}^2$ & $\chi_{.99}^2$ & $\chi_{.995}^2$ \\
+\hline 1 & . 000039 & . 00016 & . 00098 & . 0039 & . 0158 & 2.71 & 3.84 & 5.02 & 6.63 & 7.88 \\
+\hline 2 & . 0100 & . 0201 & . 0506 & . 1026 & . 2107 & 4.61 & 5.99 & 7.38 & 9.21 & 10.60 \\
+\hline 3 & . 0717 & . 115 & . 216 & . 352 & . 584 & 6.25 & 7.81 & 9.35 & 11.34 & 12.84 \\
+\hline 4 & . 207 & . 297 & . 484 & . 711 & 1.064 & 7.78 & 9.49 & 11.14 & 13.28 & 14.86 \\
+\hline 5 & . 412 & . 554 & . 831 & 1.15 & 1.61 & 9.24 & 11.07 & 12.83 & 15.09 & 16.75 \\
+\hline 6 & . 676 & . 872 & 1.24 & 1.64 & 2.20 & 10.64 & 12.59 & 14.45 & 16.81 & 18.55 \\
+\hline 7 & 989 & 1.24 & 1.69 & 2.17 & 2.83 & 12.02 & 14.07 & 16.01 & 18.48 & 20.28 \\
+\hline 8 & 1.34 & 1.65 & 2.18 & 2.73 & 3.49 & 13.36 & 15.51 & 17.53 & 20.09 & 21.96 \\
+\hline 9 & 1.73 & 2.09 & 2.70 & 3.33 & 4.17 & 14.68 & 16.92 & 19.02 & 21.67 & 23.59 \\
+\hline 10 & 2.16 & 2.56 & 3.25 & 3.94 & 4.87 & 15.99 & 18.31 & 20.48 & 23.21 & 25.19 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+\ifwithrefs
+  \bibliographystyle{plain}
+  \bibliography{~/code/refs} % 修改为你的 bib 文件
+\fi
+
+\end{document}
+
+
+\section{8.55}
+For two factors-starchy or sugary, and green base leaf or white base leaf-the following counts for the progeny of self-fertilized heterozygotes were observed (Fisher 1958):
+
+\begin{table}[H]
+\centering
+\begin{tabular}{cr}
+\hline Type & Count \\
+\hline Starchy green & 1997 \\
+Starchy white & 906 \\
+Sugary green & 904 \\
+Sugary white & 32 \\
+\hline
+\end{tabular}
+\end{table}
+
+
+According to genetic theory, the cell probabilities are $.25(2+\theta), .25(1-\theta)$, $.25(1-\theta)$, and $.25 \theta$, where $\theta(0<\theta<1)$ is a parameter related to the linkage of the factors.
+
+
+\begin{enumerate}
+\item[(a)] Find the mle of $\theta$ and its asymptotic variance.
+\item[(b)] Form an approximate $95\%$ confidence interval for $\theta$ based on part (a).
+\item[(c)] Use the bootstrap to find the approximate standard deviation of the mle and compare to the result of part (a).
+\item[(d)] Use the bootstrap to find an approximate $95\%$ confidence interval and compare to part (b).
+\end{enumerate}
